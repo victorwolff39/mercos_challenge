@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/*
+ * Tela de Loading para usuários não autenticados.
+ */
+
 class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
