@@ -20,6 +20,7 @@ class _AuthScreenState extends State<AuthScreen> {
       _isLoading = true;
     });
 
+    UserCredential authResult;
     try {
       if (authData.isLogin) {
         authResult = await _auth.signInWithEmailAndPassword(
