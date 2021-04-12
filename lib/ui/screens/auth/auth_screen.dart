@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mercos_challenge/models/auth_data.dart';
+import 'package:mercos_challenge/services/authentication.dart';
 import 'package:mercos_challenge/ui/wisgets/auth/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -10,44 +10,30 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  final _auth = FirebaseAuth.instance;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool _isLoading = false;
 
   Future<void> _handleSubmit(AuthData authData) async {
+    String error;
     setState(() {
       _isLoading = true;
     });
 
-    UserCredential authResult;
-    try {
-      if (authData.isLogin) {
-        authResult = await _auth.signInWithEmailAndPassword(
-          email: authData.email.trim(),
-          password: authData.password,
-        );
-      } else {
-        authResult = await _auth.createUserWithEmailAndPassword(
-          email: authData.email.trim(),
-          password: authData.password,
-        );
-      }
-    } on PlatformException catch (err) {
-      final msg = err.message ?? 'Ocorreu um erro! Verifique suas credenciais!';
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(msg),
-          backgroundColor: Theme.of(context).errorColor,
-        ),
-      );
-    } catch (err) {
-      print(err);
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
+    if (authData.isLogin) {
+      error = await Authentication().signIn(authData);
+    } else {
+      error = await Authentication().signUp(authData);
     }
+
+    if(error != null) {
+      Fluttertoast.showToast(msg: error);
+    } else {
+      Fluttertoast.showToast(msg: "Logado com sucesso!");
+    }
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override

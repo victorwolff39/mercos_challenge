@@ -39,11 +39,10 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, userSnapshot) {
               if (!userSnapshot.hasData) {
-                //return Center(child: Text("Tela de login"));
                 return AuthScreen();
               } else {
-                return SplashScreen();
-                //return HomeScreen();
+                //return SplashScreen();
+                return Center(child: Text("Logado!!"));
               }
             },
           ),
