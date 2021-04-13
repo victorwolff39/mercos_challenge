@@ -6,6 +6,8 @@ class Authentication {
 
   final _auth = FirebaseAuth.instance;
 
+  //TODO: implement better Firebase error handling
+
    Future<String> signIn(AuthData authData) async {
     try {
       await _auth.signInWithEmailAndPassword(

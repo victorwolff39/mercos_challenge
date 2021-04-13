@@ -51,7 +51,7 @@ class _AuthFormState extends State<AuthForm> {
             tag: 'createUserContainer',
             child: Container(
               width: 400,
-              height: _authData.isLogin ? 400 : 450,
+              height: _authData.isLogin ? 400 : 420,
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Form(
                 key: _formKey,
@@ -70,7 +70,7 @@ class _AuthFormState extends State<AuthForm> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 30),
                     TextFormField(
                       autocorrect: false,
                       textCapitalization: TextCapitalization.none,

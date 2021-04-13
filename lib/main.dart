@@ -39,9 +39,11 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (ctx, userSnapshot) {
               if (!userSnapshot.hasData) {
+                /*
+                 * Se não existir nenhum usuário vai para a tela de login
+                 */
                 return AuthScreen();
               } else {
-                //return SplashScreen();
                 return Center(child: Text("Logado!!"));
               }
             },
