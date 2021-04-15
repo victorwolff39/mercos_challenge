@@ -35,4 +35,8 @@ class Authentication {
     }
     return null;
   }
+
+  void signOut() {
+     _auth.signOut();
+  }
 }

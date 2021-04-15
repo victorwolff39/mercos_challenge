@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/clients_provider.dart';
+import 'package:mercos_challenge/ui/screens/auth_screen.dart';
+import 'package:mercos_challenge/ui/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/screens/auth/auth_screen.dart';
 import 'package:mercos_challenge/ui/screens/splash_screen.dart';
 
 void main() {
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
                    */
                   return AuthScreen();
                 } else {
-                  return Center(child: Text("Logado!!"));
+                  return HomeScreen();
                 }
               },
             ),
