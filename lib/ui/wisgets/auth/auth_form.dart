@@ -13,13 +13,14 @@ class AuthForm extends StatefulWidget {
 
 class _AuthFormState extends State<AuthForm> {
   final AuthData _authData = AuthData();
-  final GlobalKey<
-      FormState> _formKey = GlobalKey(); //Global key para manipular o formulário
+
+  //Global key para manipular o formulário
+  final GlobalKey<FormState> _formKey = GlobalKey();
 
   /*
    * Submete o formulário utilizando um validator
    */
-  _submit() {
+  _submit() async {
     FocusScope.of(context).unfocus();
     bool isValid = _formKey.currentState.validate();
 

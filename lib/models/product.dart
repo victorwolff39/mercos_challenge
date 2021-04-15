@@ -4,7 +4,7 @@ class Product {
   final int id;
   final String name;
   final double price;
-  final int multiple;
+  int multiple;
 
   Product({
     @required this.id,
