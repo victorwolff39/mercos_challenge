@@ -36,9 +36,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Color mainColor = Theme
-        .of(context)
-        .primaryColor;
+    final Color mainColor = Theme.of(context).primaryColor;
 
     return SingleChildScrollView(
       child: Padding(
@@ -94,12 +92,12 @@ class _AuthFormState extends State<AuthForm> {
                         border: const OutlineInputBorder(),
                       ),
                       onChanged: (value) => _authData.password = value,
-                      validator: (value) =>
-                      _authData.isSignUp ? InputValidator.validatePassword(
-                          value) : null,
+                      validator: (value) => _authData.isSignUp
+                          ? InputValidator.validatePassword(value)
+                          : null,
                     ),
                     SizedBox(height: 10),
-                    if(_authData.isSignUp)
+                    if (_authData.isSignUp)
                       TextFormField(
                         obscureText: true,
                         cursorColor: mainColor,
@@ -115,27 +113,32 @@ class _AuthFormState extends State<AuthForm> {
                         },
                       ),
                     SizedBox(height: 30),
-                    FlatButton(
+                    ElevatedButton(
                       child: Text(
                         _authData.isLogin ? "Entrar" : "Registrar",
                         style: TextStyle(
-                          color:
-                          Theme
-                              .of(context)
+                          color: Theme.of(context)
                               .primaryTextTheme
                               .headline1
                               .color,
                           fontSize: 20,
                         ),
                       ),
-                      padding: EdgeInsets.symmetric(
-                        vertical: 10,
-                        horizontal: 15,
-                      ),
-                      color: mainColor,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Theme.of(context).primaryColor),
+                          padding: MaterialStateProperty.all(
+                            EdgeInsets.symmetric(
+                              vertical: 10,
+                              horizontal: 15,
+                            ),
+                          ),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10)),
+                            ),
+                          )),
                       onPressed: () => _submit(),
                     ),
                     SizedBox(height: 10),

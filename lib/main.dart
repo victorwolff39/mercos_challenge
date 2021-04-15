@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/providers/clients_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
 import 'package:mercos_challenge/ui/screens/auth/auth_screen.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
           providers: [
             ChangeNotifierProvider(
               create: (_) => new ProductsProvider(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => new ClientsProvider(),
             )
           ],
           child: MaterialApp(
