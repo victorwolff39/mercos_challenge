@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/widgets/products/product_card.dart';
+import 'package:mercos_challenge/ui/widgets/products/product_item.dart';
 import 'package:provider/provider.dart';
 
 class ProductsScreen extends StatefulWidget {
@@ -37,13 +37,17 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
     return _isLoading
         ? LinearProgressIndicator()
-        : ListView.builder(
-            itemCount: productsProvider.itemsCount(),
-            itemBuilder: (ctx, index) => Column(
-              children: [
-                ProductCard(products[index]),
-              ],
+        : Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: ListView.builder(
+              itemCount: productsProvider.itemsCount(),
+              itemBuilder: (ctx, index) => Column(
+                children: [
+                  ProductCard(products[index]),
+                  Divider(),
+                ],
+              ),
             ),
-          );
+        );
   }
 }

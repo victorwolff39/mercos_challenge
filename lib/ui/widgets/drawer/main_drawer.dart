@@ -16,6 +16,7 @@ class MainDrawer extends StatelessWidget {
             centerTitle: true,
             automaticallyImplyLeading: false,
           ),
+          SizedBox(height: 8),
           ListTile(
             leading: Icon(Icons.payment),
             title: Text('Pedidos'),
