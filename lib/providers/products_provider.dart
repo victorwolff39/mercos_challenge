@@ -21,6 +21,7 @@ class ProductsProvider with ChangeNotifier {
         Product product = Product(
             id: data['id'],
             name: data['name'],
+            imageUrl: data['imageUrl'],
             price: data['price']
         );
 

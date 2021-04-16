@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/ui/wisgets/drawer/main_drawer.dart';
+import 'package:mercos_challenge/ui/screens/products_screen.dart';
+import 'package:mercos_challenge/ui/widgets/drawer/main_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Map> _screens = [
     {"title": "Pedidos", "screen": Center(child: Text("Pedidos"))},
     {"title": "Clientes", "screen": Center(child: Text("Clientes"))},
-    {"title": "Produtos", "screen": Center(child: Text("Produtos"))}
+    {"title": "Produtos", "screen": ProductsScreen()}
   ];
 
   void selectScreen(int screen) {

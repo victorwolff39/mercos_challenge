@@ -1,14 +1,17 @@
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 
 class Product {
   final int id;
   final String name;
+  final String imageUrl;
   final double price;
   int multiple;
 
   Product({
     @required this.id,
     @required this.name,
+    @required this.imageUrl,
     @required this.price,
     this.multiple,
   });
@@ -28,5 +31,10 @@ class Product {
     } else {
       return true;
     }
+  }
+
+  String formattedPrice() {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'pt_BR');
+    return formatCurrency.format(this.price).toString();
   }
 }
