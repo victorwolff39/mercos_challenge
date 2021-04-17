@@ -77,7 +77,7 @@ class ProductItem extends StatelessWidget {
     return LayoutBuilder(builder: (ctx, constraints) {
       return enableSelection
           ? InkWell(
-              onTap: () => print("Oiee"),
+              onTap: () => selectProduct(product),
               child: productItem(constraints),
             )
           : productItem(constraints);

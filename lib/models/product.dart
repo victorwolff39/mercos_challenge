@@ -38,3 +38,5 @@ class Product {
     return formatCurrency.format(this.price).toString();
   }
 }
+
+// TODO: Arrumar o preço do DL-44

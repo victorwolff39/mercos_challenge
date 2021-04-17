@@ -3,6 +3,7 @@ import 'package:mercos_challenge/models/client.dart';
 import 'package:mercos_challenge/models/order.dart';
 import 'package:mercos_challenge/ui/widgets/clients/clients_item.dart';
 import 'package:mercos_challenge/ui/widgets/order/select_client_button.dart';
+import 'package:mercos_challenge/utils/constants/app_routes.dart';
 
 class NewOrderForm extends StatefulWidget {
   @override
@@ -68,7 +69,10 @@ class _NewOrderFormState extends State<NewOrderForm> {
                   FittedBox(
                     child: ElevatedButton(
                       onPressed: () {
-                        //_showClientSelectionDialog(context);
+                        /*
+                         * arguments: true é para permitir a seleção no ProductItem.
+                         */
+                        Navigator.of(context).pushNamed(AppRoutes.SELECT_PRODUCT, arguments: true);
                       },
                       child: Row(
                         children: [Icon(Icons.add), Text("Adicionar produto")],

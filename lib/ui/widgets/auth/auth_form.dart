@@ -14,6 +14,8 @@ class AuthForm extends StatefulWidget {
 class _AuthFormState extends State<AuthForm> {
   final AuthData _authData = AuthData();
 
+
+
   //Global key para manipular o formulário
   final GlobalKey<FormState> _formKey = GlobalKey();
 
