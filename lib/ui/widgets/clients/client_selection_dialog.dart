@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/clients_provider.dart';
-import 'package:mercos_challenge/ui/widgets/clients/client_tile.dart';
 import 'package:provider/provider.dart';
 
 class ClientSelectionDialog extends StatefulWidget {
@@ -43,7 +42,16 @@ class _ClientSelectionDialogState extends State<ClientSelectionDialog> {
                   itemCount: clientsProvider.itemsCount(),
                   itemBuilder: (ctx, index) => Column(
                     children: [
-                      ClientTile(clients[index])
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(clients[index].imageUrl),
+                        ),
+                        title: Text(clients[index].name),
+                        subtitle: Text("ID: ${clients[index].id.toString()}"),
+                        onTap: () {
+                          Navigator.pop(context, clients[index]);
+                        },
+                      )
                     ],
                   ),
                 ),
