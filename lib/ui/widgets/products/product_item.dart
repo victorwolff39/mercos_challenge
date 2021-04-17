@@ -36,8 +36,9 @@ class ProductCard extends StatelessWidget {
                 child: Container(
                   width: 80,
                   height: 50,
-                  child: Image.network(
-                    product.imageUrl,
+                  child: FadeInImage(
+                    placeholder: AssetImage('assets/images/placeholder.png'),
+                    image: NetworkImage(product.imageUrl),
                     fit: BoxFit.cover,
                   ),
                 ),

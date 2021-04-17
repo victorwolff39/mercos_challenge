@@ -18,7 +18,7 @@ class MainDrawer extends StatelessWidget {
           ),
           SizedBox(height: 8),
           ListTile(
-            leading: Icon(Icons.payment),
+            leading: Icon(Icons.description),
             title: Text('Pedidos'),
             onTap: () {
               select(0);
@@ -27,7 +27,7 @@ class MainDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.account_box_rounded),
+            leading: Icon(Icons.business),
             title: Text('Clientes'),
             onTap: () {
               select(1);
@@ -36,7 +36,7 @@ class MainDrawer extends StatelessWidget {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.edit),
+            leading: Icon(Icons.menu_book),
             title: Text('Produtos'),
             onTap: () {
               select(2);

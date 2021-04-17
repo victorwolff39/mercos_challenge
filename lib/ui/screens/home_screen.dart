@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/ui/screens/clients_screen.dart';
 import 'package:mercos_challenge/ui/screens/products_screen.dart';
 import 'package:mercos_challenge/ui/widgets/drawer/main_drawer.dart';
 
@@ -11,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _screenIndex = 0;
   List<Map> _screens = [
     {"title": "Pedidos", "screen": Center(child: Text("Pedidos"))},
-    {"title": "Clientes", "screen": Center(child: Text("Clientes"))},
+    {"title": "Clientes", "screen": ClientsScreen()},
     {"title": "Produtos", "screen": ProductsScreen()}
   ];
 
