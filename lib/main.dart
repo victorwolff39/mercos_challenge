@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/clients_provider.dart';
 import 'package:mercos_challenge/ui/screens/auth_screen.dart';
 import 'package:mercos_challenge/ui/screens/home_screen.dart';
+import 'package:mercos_challenge/ui/screens/new_order_screen.dart';
+import 'package:mercos_challenge/utils/constants/app_routes.dart';
 import 'package:provider/provider.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
 import 'package:mercos_challenge/ui/screens/splash_screen.dart';
@@ -61,6 +63,9 @@ class MyApp extends StatelessWidget {
                 }
               },
             ),
+            routes: {
+              AppRoutes.NEW_ORDER: (ctx) => NewOrderScreen(),
+            },
           ),
         );
       },
