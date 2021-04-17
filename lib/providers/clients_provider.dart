@@ -21,6 +21,7 @@ class ClientsProvider with ChangeNotifier {
         Client client = Client(
             id: data['id'],
             name: data['name'],
+          imageUrl: data['imageUrl'],
         );
         _items.add(client);
         notifyListeners();

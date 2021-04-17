@@ -43,7 +43,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               itemCount: productsProvider.itemsCount(),
               itemBuilder: (ctx, index) => Column(
                 children: [
-                  ProductCard(products[index]),
+                  ProductItem(products[index]),
                   Divider(),
                 ],
               ),

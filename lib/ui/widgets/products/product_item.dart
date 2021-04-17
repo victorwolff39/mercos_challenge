@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/models/product.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductItem extends StatelessWidget {
   final Product product;
 
-  ProductCard(this.product);
+  ProductItem(this.product);
 
   @override
   Widget build(BuildContext context) {
-
-
     return LayoutBuilder(builder: (ctx, constraints) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -38,7 +36,7 @@ class ProductCard extends StatelessWidget {
                   height: 50,
                   child: FadeInImage(
                     placeholder: AssetImage('assets/images/placeholder.png'),
-                    image: NetworkImage(product.imageUrl),
+                    image: product.imageUrl != null ? NetworkImage(product.imageUrl) : AssetImage('assets/images/placeholder.png'),
                     fit: BoxFit.cover,
                   ),
                 ),

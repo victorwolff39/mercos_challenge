@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/clients_provider.dart';
+import 'package:mercos_challenge/ui/widgets/clients/clients_item.dart';
 import 'package:provider/provider.dart';
 
 class ClientsScreen extends StatefulWidget {
@@ -42,8 +43,7 @@ class _ClientsScreenState extends State<ClientsScreen> {
         itemCount: clientsProvider.itemsCount(),
         itemBuilder: (ctx, index) => Column(
           children: [
-            //ProductCard(clients[index]),
-            Text(clients[index].name),
+            ClientItem(clients[index]),
             Divider(),
           ],
         ),
