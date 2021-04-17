@@ -4,8 +4,9 @@ import 'package:mercos_challenge/models/product.dart';
 class Order {
   final Client client;
   final List<OrderItem> items;
+  final double total;
 
-  Order(this.client, this.items);
+  Order(this.client, this.items, this.total);
 }
 
 class OrderItem {

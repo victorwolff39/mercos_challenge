@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/models/client.dart';
-import 'package:mercos_challenge/ui/widgets/clients/client_selection_dialog.dart';
+import 'package:mercos_challenge/models/order.dart';
+import 'package:mercos_challenge/ui/widgets/clients/clients_item.dart';
+import 'package:mercos_challenge/ui/widgets/order/select_client_button.dart';
 
 class NewOrderForm extends StatefulWidget {
   @override
@@ -8,33 +10,77 @@ class NewOrderForm extends StatefulWidget {
 }
 
 class _NewOrderFormState extends State<NewOrderForm> {
-  /*
-   * Popup no dialog, passando o BuildContext. O dialog usa o Navigator.of para
-   * retornar a opção.
-   */
-  Future<Client> _showClientSelectionDialog(BuildContext context) async {
-    Client client = await showDialog<Client>(
-            context: context,
-            builder: (BuildContext context) => ClientSelectionDialog())
-        .then((value) {
-      return value;
+  Client client;
+  List<OrderItem> orderItems;
+
+  void selectClient(Client selectedClient) {
+    setState(() {
+      client = selectedClient;
     });
-    if (client != null) {
-      print(client.name);
-    }
-    return client;
+  }
+
+  Widget header(IconData icon, String title) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Icon(icon, size: 32, color: Theme.of(context).accentColor),
+        SizedBox(width: 10),
+        Text(
+          title,
+          style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),
+        )
+      ],
+    );
+  }
+
+  Widget divider() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Divider(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: TextButton(
-        onPressed: () {
-          _showClientSelectionDialog(context);
-        },
-        child: Text("Add client"),
-      ),
-    );
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return Padding(
+        padding: const EdgeInsets.all(16),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            children: [
+              header(Icons.business, "CLIENTE"),
+              /*
+               * Se houver um cliente selecionado, mostra, se não, pede para selecionar
+               */
+              client != null
+                  ? ClientItem(client)
+                  : SelectClientButton(selectClient, client),
+              divider(),
+              header(Icons.menu_book, "PRODUTOS"),
+              Column(
+                children: [
+                  Text(
+                    "Nenhum produto adicionado",
+                    style: TextStyle(color: Theme.of(context).primaryColor),
+                  ),
+                  SizedBox(height: 20),
+                  FittedBox(
+                    child: ElevatedButton(
+                      onPressed: () {
+                        //_showClientSelectionDialog(context);
+                      },
+                      child: Row(
+                        children: [Icon(Icons.add), Text("Adicionar produto")],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

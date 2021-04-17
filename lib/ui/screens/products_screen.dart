@@ -38,16 +38,19 @@ class _ProductsScreenState extends State<ProductsScreen> {
     return _isLoading
         ? LinearProgressIndicator()
         : Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: ListView.builder(
+            padding: const EdgeInsets.only(top: 8),
+            child: ListView.builder(
               itemCount: productsProvider.itemsCount(),
               itemBuilder: (ctx, index) => Column(
                 children: [
-                  ProductItem(products[index]),
+                  ProductItem(
+                    product: products[index],
+                    enableSelection: true,
+                  ),
                   Divider(),
                 ],
               ),
             ),
-        );
+          );
   }
 }
