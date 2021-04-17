@@ -71,6 +71,7 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     SizedBox(height: 30),
                     TextFormField(
+                      onFieldSubmitted: (value) => _submit(),
                       autocorrect: false,
                       textCapitalization: TextCapitalization.none,
                       enableSuggestions: false,
@@ -85,6 +86,7 @@ class _AuthFormState extends State<AuthForm> {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
+                      onFieldSubmitted: (value) => _submit(),
                       obscureText: true,
                       cursorColor: mainColor,
                       decoration: InputDecoration(
@@ -99,6 +101,7 @@ class _AuthFormState extends State<AuthForm> {
                     SizedBox(height: 10),
                     if (_authData.isSignUp)
                       TextFormField(
+                        onFieldSubmitted: (value) => _submit(),
                         obscureText: true,
                         cursorColor: mainColor,
                         decoration: InputDecoration(
