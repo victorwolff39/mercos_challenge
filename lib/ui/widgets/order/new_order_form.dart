@@ -72,7 +72,7 @@ class _NewOrderFormState extends State<NewOrderForm> {
                         /*
                          * arguments: true é para permitir a seleção no ProductItem.
                          */
-                        Navigator.of(context).pushNamed(AppRoutes.SELECT_PRODUCT, arguments: true);
+                        Navigator.of(context).pushNamed(AppRoutes.SELECT_PRODUCT);
                       },
                       child: Row(
                         children: [Icon(Icons.add), Text("Adicionar produto")],
