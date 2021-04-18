@@ -14,7 +14,11 @@ class OrderItem {
   final double price;
   final int quantity;
 
-  OrderItem(this.product, this.price, this.quantity);
+  OrderItem({
+    this.product,
+    this.price,
+    this.quantity,
+  });
 
   double pctDifference() {
     return (((this.price / this.product.price) - 1) * 100);

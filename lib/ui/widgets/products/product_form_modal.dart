@@ -28,6 +28,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
 
   @override
   void initState() {
+    super.initState();
     /*
      * Configurações dos TextControllers de valor e quantidade
      */
@@ -51,22 +52,22 @@ class _ProductFormModalState extends State<ProductFormModal> {
   Color suffixColor = Colors.green;
   double calculateRentability(double itemPrice) {
     OrderItem oderItem = OrderItem(
-        widget.product,
-        _moneyMaskedTextController.numberValue,
-        int.parse(_textEditingController.text.trim()));
+        product: widget.product,
+        price: _moneyMaskedTextController.numberValue,
+        quantity: int.parse(_textEditingController.text.trim()));
     /*
-       * Arredondar o double para 2 casas decimais retorna uma String, então deve
-       * fazer um parse novamente.
-       */
+     * Arredondar o double para 2 casas decimais retorna uma String, então deve
+     * fazer um parse novamente.
+     */
     double pctDifference = oderItem.pctDifference();
     pctDifference = double.parse(pctDifference.toStringAsFixed(2));
 
     setState(() {
       if (pctDifference > 0) {
-        suffixText = "Rentabilidade ótima. +${pctDifference.toString()}%";
+        suffixText = "Rentabilidade ótima. ${pctDifference.toString()}%";
         suffixColor = Colors.green;
       } else if (pctDifference <= 0 && pctDifference > -10) {
-        suffixText = "Rentabilidade boa. +${pctDifference.toString()}%";
+        suffixText = "Rentabilidade boa. ${pctDifference.toString()}%";
         suffixColor = Colors.green;
       } else {
         suffixText = "Rentabilidade ruim. ${pctDifference.toString()}%";
@@ -128,6 +129,13 @@ class _ProductFormModalState extends State<ProductFormModal> {
                             calculateRentability(_moneyMaskedTextController.numberValue);
                           });
                         },
+                        validator: (value) {
+                          double rentability = calculateRentability(_moneyMaskedTextController.numberValue);
+                          if (rentability < -10) {
+                            return "Rentabilidade muito baixa";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     Padding(
@@ -170,7 +178,17 @@ class _ProductFormModalState extends State<ProductFormModal> {
               FittedBox(
                 child: ElevatedButton(
                   onPressed: () {
-                    //validate();
+                    if(validate()) {
+                      OrderItem orderItem = OrderItem(
+                        price: _moneyMaskedTextController.numberValue,
+                        product: widget.product,
+                        quantity: int.parse(_textEditingController.text)
+                      );
+                      /*
+                       * Faz um pop para fechar o form modal e retornando o orderItem.
+                       */
+                      Navigator.of(context).pop(orderItem);
+                    }
                   },
                   child: Row(
                     children: [Icon(Icons.add), Text("Adicionar")],

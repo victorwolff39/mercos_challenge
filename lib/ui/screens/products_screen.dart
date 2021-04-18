@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/product.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/widgets/products/product_form_modal.dart';
 import 'package:mercos_challenge/ui/widgets/products/product_item.dart';
 import 'package:provider/provider.dart';
 
@@ -29,17 +27,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     });
   }
 
-  /*
-   * Form modal para colocar o valor e quantidade do produto a ser inserido.
-   */
-  _openProductFormModal(BuildContext context, Product product) {
-    showModalBottomSheet(
-        context: context,
-        builder: (ctx) {
-          return ProductFormModal(product);
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     bool allowSelection = false;
@@ -54,14 +41,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
      */
     final productsProvider = Provider.of<ProductsProvider>(context);
     final products = productsProvider.items;
-
-    /*
-     * Função que é executada ao clicar no produto.
-     * Está dentro do build para ter acesso ao context.
-     */
-    void selectProduct(Product product) {
-      _openProductFormModal(context, product);
-    }
 
     return _isLoading
         ? LinearProgressIndicator()
@@ -81,7 +60,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                      * this.widget.allowSelection.
                      */
                     enableSelection: allowSelection,
-                    selectProduct: allowSelection ? selectProduct : null,
+                    selectProduct: null,
                   ),
                   Divider(),
                 ],

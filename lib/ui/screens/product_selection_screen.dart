@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/models/order.dart';
 import 'package:mercos_challenge/models/product.dart';
 import 'package:mercos_challenge/providers/products_provider.dart';
 import 'package:mercos_challenge/ui/widgets/products/product_form_modal.dart';
@@ -33,11 +34,18 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
    * Form modal para colocar o valor e quantidade do produto a ser inserido.
    */
   _openProductFormModal(BuildContext context, Product product) {
-    showModalBottomSheet(
+      showModalBottomSheet(
         context: context,
         builder: (ctx) {
           return ProductFormModal(product);
-        });
+        }).then((value) {
+          if(value != null) {
+            OrderItem orderItem = value;
+            print(orderItem.price.toString());
+          } else {
+            print('Nulo!!');
+      }
+      });
   }
 
   @override
