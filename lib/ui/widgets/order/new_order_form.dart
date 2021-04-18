@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mercos_challenge/providers/orders_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mercos_challenge/models/client.dart';
 import 'package:mercos_challenge/models/order.dart';
@@ -19,6 +21,20 @@ class _NewOrderFormState extends State<NewOrderForm> {
   List<OrderItem> orderItems = [];
   Order order;
   double orderTotal = 0;
+
+  /*
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<OrdersProvider>(context, listen: false)
+        .loadProducts()
+        .then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+  */
 
   void selectClient(Client selectedClient) {
     setState(() {
@@ -93,6 +109,8 @@ class _NewOrderFormState extends State<NewOrderForm> {
         items: orderItems,
         total: totalItems(),
       );
+      Provider.of<OrdersProvider>(context, listen: false).addOrder(this.order);
+      Navigator.of(context).pop();
     }
   }
 

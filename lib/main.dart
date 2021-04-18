@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/clients_provider.dart';
+import 'package:mercos_challenge/providers/orders_provider.dart';
 import 'package:mercos_challenge/ui/screens/auth_screen.dart';
 import 'package:mercos_challenge/ui/screens/home_screen.dart';
 import 'package:mercos_challenge/ui/screens/new_order_screen.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
             ),
             ChangeNotifierProvider(
               create: (_) => new ClientsProvider(),
+            ),
+            ChangeNotifierProvider(
+              create: (_) => new OrdersProvider(),
             )
           ],
           child: MaterialApp(

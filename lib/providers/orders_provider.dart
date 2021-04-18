@@ -37,6 +37,41 @@ class OrdersProvider with ChangeNotifier {
     return Future.value();
   }
 
+  Future<String> addOrder(Order order) async {
+    try {
+      await post(
+        '$_ordersUrl.json',
+        body: json.encode({
+          'total': order.total,
+          'client': {
+            'id': order.client.id,
+            'name': order.client.name,
+            'imageUrl': order.client.imageUrl
+          },
+          'items': order.items.map((e) => {
+            'product': {
+              'id': e.product.id,
+              'name': e.product.name,
+              'price': e.product.price,
+              'multiple': e.product.multiple
+            }
+          }).toList()
+        }),
+      );
+      _items.insert(
+          0,
+          Order(
+            client: order.client,
+            total: order.total,
+            items: order.items
+          ));
+      notifyListeners();
+      return null;
+    } catch (error) {
+      return "Erro desconhecido.";
+    }
+  }
+
   int itemsCount() {
     return _items.length;
   }
