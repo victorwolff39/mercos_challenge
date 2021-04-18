@@ -55,9 +55,9 @@ class OrderItemWidget extends StatelessWidget {
                     Text("Quantidade: ${orderItem.quantity}")
                   ],
                 ),
+                if (orderItem.rentability != 0) RentabilityIndicator(orderItem),
               ],
             ),
-            if (orderItem.rentability != 0) RentabilityIndicator(orderItem),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

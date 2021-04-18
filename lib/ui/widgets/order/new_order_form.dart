@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mercos_challenge/models/client.dart';
@@ -16,6 +17,8 @@ class NewOrderForm extends StatefulWidget {
 class _NewOrderFormState extends State<NewOrderForm> {
   Client client;
   List<OrderItem> orderItems = [];
+  Order order;
+  double orderTotal = 0;
 
   void selectClient(Client selectedClient) {
     setState(() {
@@ -72,10 +75,38 @@ class _NewOrderFormState extends State<NewOrderForm> {
         if (!isPresent) {
           setState(() {
             orderItems.add(orderItem);
+            totalItems();
           });
         }
       }
     });
+  }
+
+  void saveOrder() {
+    if (client == null) {
+      Fluttertoast.showToast(msg: "Nenhum cliente selecionado.");
+    } else if (orderItems.length <= 0) {
+      Fluttertoast.showToast(msg: "O pedido não contém nenhum item.");
+    } else {
+      order = Order(
+        client: client,
+        items: orderItems,
+        total: totalItems(),
+      );
+    }
+  }
+
+  double totalItems() {
+    orderTotal = 0;
+    this.orderItems.forEach((element) {
+      orderTotal = orderTotal + element.price;
+    });
+    return orderTotal;
+  }
+
+  String formattedTotal(double total) {
+    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'pt_BR');
+    return formatCurrency.format(total).toString();
   }
 
   @override
@@ -121,6 +152,33 @@ class _NewOrderFormState extends State<NewOrderForm> {
                   )
                 ],
               ),
+              divider(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text("Total: ${formattedTotal(orderTotal)}", style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 20
+                  )),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      FittedBox(
+                        child: ElevatedButton(
+                          child: Row(
+                            children: [
+                              Icon(Icons.save),
+                              Text("Salvar pedido")
+                            ],
+                          ),
+                          onPressed: () => saveOrder(),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              )
             ],
           ),
         ),

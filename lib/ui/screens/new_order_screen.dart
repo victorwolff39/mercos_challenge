@@ -13,6 +13,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
       appBar: AppBar(
         title: Text("Novo pedido"),
         centerTitle: true,
+        actions: [IconButton(icon: Icon(Icons.save), onPressed: () {})],
       ),
       body: NewOrderForm(),
     );
