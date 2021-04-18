@@ -34,18 +34,16 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
    * Form modal para colocar o valor e quantidade do produto a ser inserido.
    */
   _openProductFormModal(BuildContext context, Product product) {
-      showModalBottomSheet(
+    showModalBottomSheet(
         context: context,
         builder: (ctx) {
           return ProductFormModal(product);
         }).then((value) {
-          if(value != null) {
-            OrderItem orderItem = value;
-            print(orderItem.price.toString());
-          } else {
-            print('Nulo!!');
+      if (value != null) {
+        OrderItem orderItem = value;
+        Navigator.of(context).pop(orderItem);
       }
-      });
+    });
   }
 
   @override
@@ -72,28 +70,28 @@ class _ProductSelectionScreenState extends State<ProductSelectionScreen> {
       body: _isLoading
           ? LinearProgressIndicator()
           : Padding(
-        padding: const EdgeInsets.only(top: 8),
-        child: ListView.builder(
-          itemCount: productsProvider.itemsCount(),
-          itemBuilder: (ctx, index) => Column(
-            children: [
-              ProductItem(
-                product: products[index],
-                /*
-                     * Caso a tela esteja somente no modo de visualização, não envio
-                     * a função e o enableSelection como false.
-                     *
-                     * Para acessar os parms do Widget state, se usa
-                     * this.widget.allowSelection.
-                     */
-                enableSelection: true,
-                selectProduct: selectProduct,
+              padding: const EdgeInsets.only(top: 8),
+              child: ListView.builder(
+                itemCount: productsProvider.itemsCount(),
+                itemBuilder: (ctx, index) => Column(
+                  children: [
+                    ProductItem(
+                      product: products[index],
+                      /*
+                       * Caso a tela esteja somente no modo de visualização, não envio
+                       * a função e o enableSelection como false.
+                       *
+                       * Para acessar os parms do Widget state, se usa
+                       * this.widget.allowSelection.
+                       */
+                      enableSelection: true,
+                      selectProduct: selectProduct,
+                    ),
+                    Divider(),
+                  ],
+                ),
               ),
-              Divider(),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }

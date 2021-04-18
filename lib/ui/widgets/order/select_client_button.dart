@@ -42,7 +42,7 @@ class SelectClientButton extends StatelessWidget {
                   _showClientSelectionDialog(context);
                 },
                 child: Row(
-                  children: [Icon(Icons.add), Text("Adicionar cliente")],
+                  children: [Icon(Icons.add), Text("Selecionar cliente")],
                 ),
               ),
             ),

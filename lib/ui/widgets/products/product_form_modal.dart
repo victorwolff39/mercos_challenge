@@ -53,8 +53,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
   double calculateRentability(double itemPrice) {
     OrderItem oderItem = OrderItem(
         product: widget.product,
-        price: _moneyMaskedTextController.numberValue,
-        quantity: int.parse(_textEditingController.text.trim()));
+        price: _moneyMaskedTextController.numberValue);
     /*
      * Arredondar o double para 2 casas decimais retorna uma String, então deve
      * fazer um parse novamente.
@@ -163,6 +162,9 @@ class _ProductFormModalState extends State<ProductFormModal> {
                               (double.parse(value.trim()) <= 0)) {
                             return "Quantidade deve ser maior que zero";
                           }
+                          if(value.trim() == "") {
+                            return "Quantide é obrigatória.";
+                          }
                           if (!widget.product
                               .verifyMultiple(int.parse(value.trim()))) {
                             return "A unidade mínima de embarque deste produto é ${widget.product.multiple.toString()}";
@@ -179,10 +181,15 @@ class _ProductFormModalState extends State<ProductFormModal> {
                 child: ElevatedButton(
                   onPressed: () {
                     if(validate()) {
+                      int quantity = int.parse(_textEditingController.text);
+                      double rentability = calculateRentability(_moneyMaskedTextController.numberValue);
+                      double price = _moneyMaskedTextController.numberValue * quantity;
+
                       OrderItem orderItem = OrderItem(
-                        price: _moneyMaskedTextController.numberValue,
+                        price: price,
                         product: widget.product,
-                        quantity: int.parse(_textEditingController.text)
+                        rentability: rentability,
+                        quantity: quantity
                       );
                       /*
                        * Faz um pop para fechar o form modal e retornando o orderItem.
