@@ -29,13 +29,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    bool allowSelection = false;
-    //Pega os args enviados usando o pushNamed
-    final bool arguments = ModalRoute.of(context).settings.arguments as bool;
-    if(arguments != null) {
-      allowSelection = arguments;
-    }
-
     /*
      * Pega a lista de produtos do provider.
      */
@@ -59,7 +52,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                      * Para acessar os parms do Widget state, se usa
                      * this.widget.allowSelection.
                      */
-                    enableSelection: allowSelection,
+                    enableSelection: false,
                     selectProduct: null,
                   ),
                   Divider(),

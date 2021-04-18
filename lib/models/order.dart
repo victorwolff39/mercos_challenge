@@ -4,11 +4,13 @@ import 'package:mercos_challenge/models/client.dart';
 import 'package:mercos_challenge/models/product.dart';
 
 class Order {
+  final String id;
   final Client client;
   final List<OrderItem> items;
   final double total;
 
   Order({
+    this.id,
     @required this.client,
     @required this.items,
     @required this.total,
