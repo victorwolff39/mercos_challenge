@@ -15,7 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Map> _screens = [
     {"title": "Pedidos", "screen": OrdersScreen()},
     {"title": "Clientes", "screen": ClientsScreen()},
-    {"title": "Produtos", "screen": ProductsScreen()}
+    {"title": "Produtos", "screen": ProductsScreen()},
   ];
 
   void selectScreen(int screen) {
@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (_screenIndex == 0)
               IconButton(icon: Icon(Icons.add), onPressed: () {
                 Navigator.of(context).pushNamed(AppRoutes.NEW_ORDER);
+                //selectScreen(3);
               })
           ],
           title: Text(_screens[_screenIndex]["title"]),

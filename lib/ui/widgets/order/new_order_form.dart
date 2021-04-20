@@ -22,20 +22,6 @@ class _NewOrderFormState extends State<NewOrderForm> {
   Order order;
   double orderTotal = 0;
 
-  /*
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<OrdersProvider>(context, listen: false)
-        .loadProducts()
-        .then((value) {
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
-  */
-
   void selectClient(Client selectedClient) {
     setState(() {
       client = selectedClient;

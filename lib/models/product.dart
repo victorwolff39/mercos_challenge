@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
+import 'package:mercos_challenge/utils/number_formatter.dart';
 
 class Product {
   final int id;
@@ -34,8 +34,7 @@ class Product {
   }
 
   String formattedPrice() {
-    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'pt_BR');
-    return formatCurrency.format(this.price).toString();
+    return NumberFormatter.formatPrice(this.price);
   }
 }
 

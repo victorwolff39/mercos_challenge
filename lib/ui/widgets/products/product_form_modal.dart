@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-import 'package:mercos_challenge/models/debouncer.dart';
+import 'file:///G:/IdeaProjects/Flutter/mercos_challenge/lib/utils/debouncer.dart';
 import 'package:mercos_challenge/models/product.dart';
 import 'package:mercos_challenge/models/order.dart';
 

@@ -43,11 +43,10 @@ class OrdersProvider with ChangeNotifier {
               }).toList(),
         ));
       });
+      notifyListeners();
     }
-
     _items.clear();
-
-    print(data);
+    _items = loadedItems.reversed.toList();
     return Future.value();
   }
 
@@ -78,9 +77,9 @@ class OrdersProvider with ChangeNotifier {
               .toList()
         }),
       );
+      notifyListeners();
       _items.insert(0,
           Order(client: order.client, total: order.total, items: order.items));
-      notifyListeners();
       return null;
     } catch (error) {
       return "Erro desconhecido.";

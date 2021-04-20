@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:mercos_challenge/models/client.dart';
 import 'package:mercos_challenge/models/product.dart';
+import 'package:mercos_challenge/utils/number_formatter.dart';
 
 class Order {
   final String id;
@@ -15,6 +15,10 @@ class Order {
     @required this.items,
     @required this.total,
   });
+
+  String formattedTotal() {
+    return NumberFormatter.formatPrice(this.total);
+  }
 }
 
 class OrderItem {
@@ -35,7 +39,6 @@ class OrderItem {
   }
 
   String formattedPrice() {
-    final formatCurrency = new NumberFormat.simpleCurrency(locale: 'pt_BR');
-    return formatCurrency.format(this.price).toString();
+    return NumberFormatter.formatPrice(this.price);
   }
 }
