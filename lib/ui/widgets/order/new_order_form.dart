@@ -94,6 +94,7 @@ class _NewOrderFormState extends State<NewOrderForm> {
         client: client,
         items: orderItems,
         total: totalItems(),
+        date: DateTime.now(),
       );
       Provider.of<OrdersProvider>(context, listen: false).addOrder(this.order);
       Navigator.of(context).pop();

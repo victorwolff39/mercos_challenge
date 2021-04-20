@@ -22,6 +22,7 @@ class OrdersProvider with ChangeNotifier {
         loadedItems.add(Order(
           id: orderId,
           total: orderData['total'],
+          date: DateTime.parse(orderData['date']),
           client: client.Client(
               id: orderData['client']['id'],
               name: orderData['client']['name'],
@@ -56,6 +57,7 @@ class OrdersProvider with ChangeNotifier {
         '$_ordersUrl.json',
         body: json.encode({
           'total': order.total,
+          'date': order.date.toIso8601String(),
           'client': {
             'id': order.client.id,
             'name': order.client.name,

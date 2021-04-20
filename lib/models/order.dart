@@ -8,12 +8,14 @@ class Order {
   final Client client;
   final List<OrderItem> items;
   final double total;
+  final DateTime date;
 
   Order({
     this.id,
     @required this.client,
     @required this.items,
     @required this.total,
+    this.date
   });
 
   String formattedTotal() {
