@@ -5,7 +5,6 @@ import 'package:mercos_challenge/providers/clients_provider.dart';
 import 'package:mercos_challenge/providers/orders_provider.dart';
 import 'package:mercos_challenge/ui/screens/auth_screen.dart';
 import 'package:mercos_challenge/ui/screens/home_screen.dart';
-import 'package:mercos_challenge/ui/screens/new_order_screen.dart';
 import 'package:mercos_challenge/ui/screens/product_selection_screen.dart';
 import 'package:mercos_challenge/utils/constants/app_routes.dart';
 import 'package:provider/provider.dart';
@@ -69,7 +68,6 @@ class MyApp extends StatelessWidget {
               },
             ),
             routes: {
-              AppRoutes.NEW_ORDER: (ctx) => NewOrderScreen(),
               AppRoutes.SELECT_PRODUCT: (ctx) => ProductSelectionScreen(),
             },
           ),
