@@ -166,10 +166,13 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text("Total: ${formattedTotal(orderTotal)}", style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 20
-                  )),
+                  Text(
+                    "Total: ${formattedTotal(orderTotal)}",
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 20,
+                    ),
+                  ),
                   SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -177,10 +180,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                       FittedBox(
                         child: ElevatedButton(
                           child: Row(
-                            children: [
-                              Icon(Icons.save),
-                              Text("Salvar pedido")
-                            ],
+                            children: [Icon(Icons.save), Text("Salvar pedido")],
                           ),
                           onPressed: () => saveOrder(),
                         ),

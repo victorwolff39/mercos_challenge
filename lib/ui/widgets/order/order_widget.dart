@@ -11,25 +11,35 @@ class OrderWidget extends StatefulWidget {
   _OrderWidgetState createState() => _OrderWidgetState();
 }
 
-class _OrderWidgetState extends State<OrderWidget> with SingleTickerProviderStateMixin {
+class _OrderWidgetState extends State<OrderWidget>
+    with SingleTickerProviderStateMixin {
   bool _expanded = false;
+
+  //TODO: Deletar e editar pedido no Firebase
 
   @override
   Widget build(BuildContext context) {
     final itemsHeight = (widget.order.items.length * 25.0) + 10;
     return AnimatedContainer(
       duration: Duration(milliseconds: 300),
-      height: _expanded ? itemsHeight + 92 : 92,
+      height: _expanded ? itemsHeight + 144 : 144,
       child: Card(
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
             ListTile(
-              title: Text('R\$ ${widget.order.total.toStringAsFixed(2)}'),
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(widget.order.client.imageUrl),
+              ),
+              title: Text(widget.order.client.name),
               subtitle: Text(
                   DateFormat('dd/MM/yyyy  hh:mm').format(widget.order.date)),
               trailing: IconButton(
-                icon: Icon(!_expanded ? Icons.expand_more : Icons.expand_less),
+                icon: Row(
+                  children: [
+                    Icon(!_expanded ? Icons.expand_more : Icons.expand_less),
+                  ],
+                ),
                 onPressed: () {
                   setState(() {
                     _expanded = !_expanded;
@@ -54,7 +64,7 @@ class _OrderWidgetState extends State<OrderWidget> with SingleTickerProviderStat
                         ),
                       ),
                       Text(
-                        '${product.quantity} x R\$${product.product.price}',
+                        '${product.quantity} x ${product.product.formattedPrice()}',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -66,6 +76,38 @@ class _OrderWidgetState extends State<OrderWidget> with SingleTickerProviderStat
                 }).toList(),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  //Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.edit, size: 20,),
+                            onPressed: () {},
+                          ),
+                          IconButton(
+                            icon: Icon(Icons.delete_outline, size: 20,),
+                            onPressed: () {},
+                          ),
+                        ],
+                      ),
+                      Text(
+                        "Total: ${widget.order.formattedTotal()}",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
