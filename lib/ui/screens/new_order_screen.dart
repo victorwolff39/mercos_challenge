@@ -56,6 +56,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
   void removeItem(OrderItem orderItem) {
     setState(() {
       orderItems.remove(orderItem);
+      totalItems();
       Fluttertoast.showToast(msg: "Item removido.");
     });
   }
