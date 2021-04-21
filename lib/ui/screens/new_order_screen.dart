@@ -139,6 +139,13 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
               header(Icons.menu_book, "PRODUTOS"),
               Column(
                 children: [
+                  SizedBox(height: 20),
+                  if (orderItems.length <= 0)
+                    Text(
+                      "Nenhum produto adicionado",
+                      style: TextStyle(color: Theme.of(context).primaryColor),
+                    ),
+                  SizedBox(height: 20),
                   FittedBox(
                     child: ElevatedButton(
                       onPressed: () => addProduct(),
@@ -147,12 +154,6 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
-                  if (orderItems.length <= 0)
-                    Text(
-                      "Nenhum produto adicionado",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
-                    ),
                   SizedBox(height: 20),
                   ListView.builder(
                     itemCount: orderItems.length,

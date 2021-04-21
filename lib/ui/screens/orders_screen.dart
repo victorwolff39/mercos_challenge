@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mercos_challenge/providers/orders_provider.dart';
 import 'package:mercos_challenge/ui/widgets/order/order_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:mercos_challenge/utils/constants/app_routes.dart';
 
 class OrdersScreen extends StatefulWidget {
+  final Function(int) selectScreen;
+
+  OrdersScreen(this.selectScreen);
+
   @override
   _OrdersScreenState createState() => _OrdersScreenState();
 }
@@ -62,13 +65,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
             FittedBox(
               child: ElevatedButton(
                 onPressed: () async {
-                  Navigator.of(context).pushNamed(AppRoutes.NEW_ORDER);
+                  widget.selectScreen(3);
                 },
                 child: Row(
                   children: [Icon(Icons.add), Text("Adicionar pedido")],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

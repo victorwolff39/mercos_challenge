@@ -13,17 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _screenIndex = 0;
 
-  /*
-   * Foi usado uma estratégia diferente para trocar para a tela de cadastro de pedidos.
-   * Não queria usar uma stack de tela (uma tela sobre a outra) e depois dar um pop por
-   * conta das dificuldades em passar funções pelos parâmetros.
-   */
-  List<Map> _screens = [
-    {"title": "Pedidos", "screen": OrdersScreen()},
-    {"title": "Clientes", "screen": ClientsScreen()},
-    {"title": "Produtos", "screen": ProductsScreen()},
-  ];
-
   void selectScreen(int screen) {
     setState(() {
       _screenIndex = screen;
@@ -39,6 +28,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    /*
+     * Foi usado uma estratégia diferente para trocar para a tela de cadastro de pedidos.
+     * Não queria usar uma stack de tela (uma tela sobre a outra) e depois dar um pop por
+     * conta das dificuldades em passar funções pelos parâmetros.
+     */
+    List<Map> _screens = [
+      {"title": "Pedidos", "screen": OrdersScreen(selectScreen)},
+      {"title": "Clientes", "screen": ClientsScreen()},
+      {"title": "Produtos", "screen": ProductsScreen()},
+    ];
+
     return Scaffold(
       appBar: AppBar(
         /*
