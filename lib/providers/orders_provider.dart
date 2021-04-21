@@ -88,6 +88,18 @@ class OrdersProvider with ChangeNotifier {
     }
   }
 
+  Future<String> deleteOrder(Order order) async {
+    try {
+      await delete(
+        '$_ordersUrl/${order.id}.json');
+      notifyListeners();
+      _items.remove(order);
+      return null;
+    } catch (error) {
+      return "Erro desconhecido.";
+    }
+  }
+
   int itemsCount() {
     return _items.length;
   }

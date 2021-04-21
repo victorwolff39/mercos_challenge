@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/models/order.dart';
 import 'package:mercos_challenge/providers/orders_provider.dart';
 import 'package:mercos_challenge/ui/widgets/order/order_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class OrdersScreen extends StatefulWidget {
   final Function(int) selectScreen;
@@ -39,42 +41,58 @@ class _OrdersScreenState extends State<OrdersScreen> {
     final ordersProvider = Provider.of<OrdersProvider>(context);
     final orders = ordersProvider.items;
 
+    /*
+     * deleteOrder está dentro do build para pegar o BuildContext.
+     */
+    void deleteOrder(Order order) {
+      setState(() {
+        ordersProvider.deleteOrder(order);
+        Fluttertoast.showToast(msg: "Pedido removido.");
+      });
+    }
+
     return RefreshIndicator(
       onRefresh: () => _refreshProducts(context),
       child: _isLoading
           ? LinearProgressIndicator()
           : orders.length > 0
-          ? ListView.builder(
-        itemCount: ordersProvider.itemsCount(),
-        itemBuilder: (ctx, index) => Column(
-          children: [
-            OrderWidget(orders[index]),
-          ],
-        ),
-      )
-          : Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Nenhum pedido cadastrado",
-              style: TextStyle(color: Theme.of(context).primaryColor),
-            ),
-            SizedBox(height: 20),
-            FittedBox(
-              child: ElevatedButton(
-                onPressed: () async {
-                  widget.selectScreen(3);
-                },
-                child: Row(
-                  children: [Icon(Icons.add), Text("Adicionar pedido")],
+              ? ListView.builder(
+                  itemCount: ordersProvider.itemsCount(),
+                  itemBuilder: (ctx, index) => Column(
+                    children: [
+                      OrderWidget(
+                        order: orders[index],
+                        deleteOrder: deleteOrder,
+                      ),
+                    ],
+                  ),
+                )
+              : Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Nenhum pedido cadastrado",
+                        style: TextStyle(color: Theme.of(context).primaryColor),
+                      ),
+                      SizedBox(height: 20),
+                      FittedBox(
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            widget.selectScreen(3);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.add),
+                              Text("Adicionar pedido")
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

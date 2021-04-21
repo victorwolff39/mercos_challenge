@@ -4,8 +4,9 @@ import 'package:mercos_challenge/models/order.dart';
 
 class OrderWidget extends StatefulWidget {
   final Order order;
+  final Function(Order order) deleteOrder;
 
-  OrderWidget(this.order);
+  OrderWidget({this.order, this.deleteOrder});
 
   @override
   _OrderWidgetState createState() => _OrderWidgetState();
@@ -15,7 +16,33 @@ class _OrderWidgetState extends State<OrderWidget>
     with SingleTickerProviderStateMixin {
   bool _expanded = false;
 
-  //TODO: Deletar e editar pedido no Firebase
+  deleteOrder(BuildContext context) {
+    showDialog<bool>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Deletar pedido?"),
+        content: const Text(
+          "Deseja apagar permanentemente este pedido?",
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text("Não"),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text("Sim"),
+          ),
+        ],
+      ),
+    ).then((value) {
+      if (value != null) {
+        if (value) {
+          widget.deleteOrder(widget.order);
+        }
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -87,12 +114,20 @@ class _OrderWidgetState extends State<OrderWidget>
                       Row(
                         children: [
                           IconButton(
-                            icon: Icon(Icons.edit, size: 20,),
+                            icon: Icon(
+                              Icons.edit,
+                              size: 20,
+                            ),
                             onPressed: () {},
                           ),
                           IconButton(
-                            icon: Icon(Icons.delete_outline, size: 20,),
-                            onPressed: () {},
+                            icon: Icon(
+                              Icons.delete_outline,
+                              size: 20,
+                            ),
+                            onPressed: () {
+                              deleteOrder(context);
+                            },
                           ),
                         ],
                       ),
