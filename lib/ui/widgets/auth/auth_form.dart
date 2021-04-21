@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/auth_data.dart';
-import 'package:mercos_challenge/utils/input_validator.dart';
+import '../../../models/auth_data.dart';
+import '../../../utils/input_validator.dart';
 
 class AuthForm extends StatefulWidget {
   final void Function(AuthData authData) onSubmit;

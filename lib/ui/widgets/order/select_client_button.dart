@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/client.dart';
-import 'package:mercos_challenge/ui/widgets/clients/client_selection_dialog.dart';
+import '../../../models/client.dart';
+import '../../widgets/clients/client_selection_dialog.dart';
 
 class SelectClientButton extends StatelessWidget {
   final Function(Client client) selectClient;

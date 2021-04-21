@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/client.dart';
+import '../../../models/client.dart';
 
 class ClientItem extends StatelessWidget {
   final Client client;

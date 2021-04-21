@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/ui/widgets/products/rentability_indicator.dart';
+import '../../../models/order.dart';
+import '../../../models/product.dart';
+import '../../widgets/products/rentability_indicator.dart';
 
 class OrderItemWidget extends StatelessWidget {
   final OrderItem orderItem;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/product.dart';
+import '../../../models/product.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;

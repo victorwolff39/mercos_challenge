@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/ui/screens/clients_screen.dart';
-import 'package:mercos_challenge/ui/screens/new_order_screen.dart';
-import 'package:mercos_challenge/ui/screens/orders_screen.dart';
-import 'package:mercos_challenge/ui/screens/products_screen.dart';
-import 'package:mercos_challenge/ui/widgets/drawer/main_drawer.dart';
+import '../screens/clients_screen.dart';
+import '../screens/new_order_screen.dart';
+import '../screens/orders_screen.dart';
+import '../screens/products_screen.dart';
+import '../widgets/drawer/main_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

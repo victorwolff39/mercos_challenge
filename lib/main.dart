@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/providers/clients_provider.dart';
-import 'package:mercos_challenge/providers/orders_provider.dart';
-import 'package:mercos_challenge/ui/screens/auth_screen.dart';
-import 'package:mercos_challenge/ui/screens/home_screen.dart';
-import 'package:mercos_challenge/ui/screens/product_selection_screen.dart';
-import 'package:mercos_challenge/utils/constants/app_routes.dart';
 import 'package:provider/provider.dart';
-import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/screens/splash_screen.dart';
+import './providers/clients_provider.dart';
+import './providers/orders_provider.dart';
+import './ui/screens/auth_screen.dart';
+import './ui/screens/home_screen.dart';
+import './ui/screens/product_selection_screen.dart';
+import './utils/constants/app_routes.dart';
+import './providers/products_provider.dart';
+import './ui/screens/splash_screen.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/utils/debouncer.dart';
+import '../../../models/product.dart';
+import '../../../models/order.dart';
+import '../../../utils/debouncer.dart';
 
 class ProductFormModal extends StatefulWidget {
   final Product product;

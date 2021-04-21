@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
-import 'package:mercos_challenge/models/auth_data.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../models/auth_data.dart';
 
 class Authentication {
 

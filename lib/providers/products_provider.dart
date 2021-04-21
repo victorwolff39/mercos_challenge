@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/utils/constants/firebase_endpoints.dart';
+import '../models/product.dart';
+import '../utils/constants/firebase_endpoints.dart';
 
 class ProductsProvider with ChangeNotifier {
   final String _productsUrl = Endpoints.PRODUCTS;

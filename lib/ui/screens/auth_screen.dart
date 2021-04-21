@@ -1,8 +1,8 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/auth_data.dart';
-import 'package:mercos_challenge/services/authentication.dart';
-import 'package:mercos_challenge/ui/widgets/auth/auth_form.dart';
+import '../../models/auth_data.dart';
+import '../../services/authentication.dart';
+import '../widgets/auth/auth_form.dart';
 
 class AuthScreen extends StatefulWidget {
   @override

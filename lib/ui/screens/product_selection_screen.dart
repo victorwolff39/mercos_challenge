@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/widgets/products/product_form_modal.dart';
-import 'package:mercos_challenge/ui/widgets/products/product_item.dart';
 import 'package:provider/provider.dart';
+import '../../models/order.dart';
+import '../../models/product.dart';
+import '../../providers/products_provider.dart';
+import '../widgets/products/product_form_modal.dart';
+import '../widgets/products/product_item.dart';
 
 class ProductSelectionScreen extends StatefulWidget {
   @override

@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
-import 'package:mercos_challenge/models/client.dart';
-import 'package:mercos_challenge/utils/constants/firebase_endpoints.dart';
+import '../models/client.dart';
+import '../utils/constants/firebase_endpoints.dart';
 
 class ClientsProvider with ChangeNotifier {
   final String _clientsUrl = Endpoints.CLIENTS;

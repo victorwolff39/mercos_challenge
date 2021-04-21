@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/providers/products_provider.dart';
-import 'package:mercos_challenge/ui/widgets/products/product_item.dart';
 import 'package:provider/provider.dart';
+import '../../providers/products_provider.dart';
+import '../widgets/products/product_item.dart';
 
 class ProductsScreen extends StatefulWidget {
   @override

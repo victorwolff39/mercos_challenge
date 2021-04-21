@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mercos_challenge/utils/number_formatter.dart';
+import '../utils/number_formatter.dart';
 
 class Product {
   final int id;
@@ -37,5 +37,3 @@ class Product {
     return NumberFormatter.formatPrice(this.price);
   }
 }
-
-// TODO: Arrumar o preço do DL-44

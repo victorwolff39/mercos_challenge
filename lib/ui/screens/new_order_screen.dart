@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
-import 'package:mercos_challenge/providers/orders_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mercos_challenge/models/client.dart';
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/ui/widgets/clients/clients_item.dart';
-import 'package:mercos_challenge/ui/widgets/order/order_item_widget.dart';
-import 'package:mercos_challenge/ui/widgets/order/select_client_button.dart';
-import 'package:mercos_challenge/utils/constants/app_routes.dart';
+import '../../providers/orders_provider.dart';
+import '../../models/client.dart';
+import '../../models/order.dart';
+import '../widgets/clients/clients_item.dart';
+import '../widgets/order/order_item_widget.dart';
+import '../widgets/order/select_client_button.dart';
+import '../../utils/constants/app_routes.dart';
 
 class NewOrderScreen extends StatefulWidget {
   final Function selectOrderScreen;

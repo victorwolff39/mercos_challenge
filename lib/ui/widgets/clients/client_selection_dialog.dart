@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/providers/clients_provider.dart';
 import 'package:provider/provider.dart';
+import '../../../providers/clients_provider.dart';
 
 class ClientSelectionDialog extends StatefulWidget {
   @override

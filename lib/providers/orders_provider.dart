@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mercos_challenge/models/client.dart' as client;
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/utils/constants/firebase_endpoints.dart';
+import '../models/client.dart' as client;
+import '../models/order.dart';
+import '../models/product.dart';
+import '../utils/constants/firebase_endpoints.dart';
 
 class OrdersProvider with ChangeNotifier {
   final String _ordersUrl = Endpoints.ORDERS;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/models/order.dart';
-import 'package:mercos_challenge/providers/orders_provider.dart';
-import 'package:mercos_challenge/ui/widgets/order/order_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import '../../models/order.dart';
+import '../../providers/orders_provider.dart';
+import '../widgets/order/order_widget.dart';
 
 class OrdersScreen extends StatefulWidget {
   final Function(int) selectScreen;

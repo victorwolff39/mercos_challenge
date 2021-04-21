@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mercos_challenge/services/authentication.dart';
+import '../../../services/authentication.dart';
 
 class MainDrawer extends StatelessWidget {
   final Function(int) select;

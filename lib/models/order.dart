@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:mercos_challenge/models/client.dart';
-import 'package:mercos_challenge/models/product.dart';
-import 'package:mercos_challenge/utils/number_formatter.dart';
+import '../models/client.dart';
+import '../models/product.dart';
+import '../utils/number_formatter.dart';
 
 class Order {
   final String id;
