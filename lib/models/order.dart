@@ -4,7 +4,7 @@ import '../models/product.dart';
 import '../utils/number_formatter.dart';
 
 class Order {
-  final String id;
+  String id;
   final Client client;
   final List<OrderItem> items;
   final double total;

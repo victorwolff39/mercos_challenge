@@ -16,6 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Order order;
 
   void selectScreen(int screen, Order order) {
+    this.order = null;
     if (order != null) {
       this.order = order;
     }
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
        */
       body: _screenIndex != 3
           ? _screens[_screenIndex]["screen"]
-          : NewOrderScreen(selectOrderScreen: selectOrderScreen, order: order ?? null,),
+          : NewOrderScreen(selectOrderScreen: selectOrderScreen, currentOrder: order ?? null,),
     );
   }
 }

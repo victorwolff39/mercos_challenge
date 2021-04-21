@@ -49,6 +49,10 @@ class _OrderWidgetState extends State<OrderWidget>
     });
   }
 
+  editOrder() {
+    widget.editOrder(widget.order);
+  }
+
   @override
   Widget build(BuildContext context) {
     final itemsHeight = (widget.order.items.length * 25.0) + 10;
@@ -124,7 +128,7 @@ class _OrderWidgetState extends State<OrderWidget>
                               size: 20,
                             ),
                             onPressed: () {
-                              widget.editOrder(widget.order);
+                              editOrder();
                             },
                           ),
                           IconButton(

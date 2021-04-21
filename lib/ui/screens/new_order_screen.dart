@@ -13,11 +13,11 @@ import '../../utils/constants/app_routes.dart';
 
 class NewOrderScreen extends StatefulWidget {
   final Function selectOrderScreen;
-  final Order order;
+  final Order currentOrder;
 
   NewOrderScreen({
     @required this.selectOrderScreen,
-    this.order,
+    this.currentOrder,
   });
 
   @override
@@ -39,11 +39,11 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
   @override
   void initState() {
     super.initState();
-    if (widget.order != null) {
-      order = widget.order;
-      client = widget.order.client;
-      orderItems = widget.order.items;
-      orderTotal = widget.order.total;
+    if (widget.currentOrder != null) {
+      order = widget.currentOrder;
+      client = widget.currentOrder.client;
+      orderItems = widget.currentOrder.items;
+      orderTotal = widget.currentOrder.total;
       isUpdate = true;
     }
   }
@@ -123,8 +123,13 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         total: totalItems(),
         date: DateTime.now(),
       );
-      Provider.of<OrdersProvider>(context, listen: false).addOrder(this.order);
-      //Navigator.of(context).pop();
+      if (isUpdate) {
+        print("aaa ${widget.currentOrder.id}");
+        order.id = widget.currentOrder.id;
+        Provider.of<OrdersProvider>(context, listen: false).editOrder(this.order);
+      } else {
+        Provider.of<OrdersProvider>(context, listen: false).addOrder(this.order);
+      }
       widget.selectOrderScreen();
     }
   }

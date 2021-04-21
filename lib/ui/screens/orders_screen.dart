@@ -54,20 +54,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
      * deleteOrder e editOrder estão dentro do build para pegar o BuildContext.
      */
     void deleteOrder(Order order) {
-      setState(() {
-        ordersProvider.deleteOrder(order);
-        Fluttertoast.showToast(msg: "Pedido removido.");
+      ordersProvider.deleteOrder(order).then((value) => {
+        _refreshProducts(context)
       });
+      Fluttertoast.showToast(msg: "Pedido removido.");
     }
 
     void editOrder(Order order) {
       widget.selectScreen(3, order);
-      /*
-      setState(() {
-        ordersProvider.editOrder(order);
-        Fluttertoast.showToast(msg: "Pedido editado com sucesso.");
-      });
-      */
     }
 
     return RefreshIndicator(
