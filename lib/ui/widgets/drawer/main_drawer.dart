@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/models/order.dart';
 import '../../../services/authentication.dart';
 
 class MainDrawer extends StatelessWidget {
-  final Function(int) select;
+  final Function(int, Order) select;
 
   MainDrawer(this.select);
 
@@ -21,7 +22,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.description),
             title: Text('Pedidos'),
             onTap: () {
-              select(0);
+              select(0, null);
               Navigator.pop(context);
             },
           ),
@@ -30,7 +31,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.business),
             title: Text('Clientes'),
             onTap: () {
-              select(1);
+              select(1, null);
               Navigator.pop(context);
             },
           ),
@@ -39,7 +40,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.menu_book),
             title: Text('Produtos'),
             onTap: () {
-              select(2);
+              select(2, null);
               Navigator.pop(context);
             },
           ),

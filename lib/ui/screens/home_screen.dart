@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mercos_challenge/models/order.dart';
 import '../screens/clients_screen.dart';
 import '../screens/new_order_screen.dart';
 import '../screens/orders_screen.dart';
@@ -12,8 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _screenIndex = 0;
+  Order order;
 
-  void selectScreen(int screen) {
+  void selectScreen(int screen, Order order) {
+    if (order != null) {
+      this.order = order;
+    }
     setState(() {
       _screenIndex = screen;
     });
@@ -23,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
    * Função para selecionar a tela de pedidos.
    */
   void selectOrderScreen() {
-    selectScreen(0);
+    selectScreen(0, null);
   }
 
   @override
@@ -59,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
-                  selectScreen(3);
+                  selectScreen(3, null);
                 })
         ],
         /*
@@ -79,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
        */
       body: _screenIndex != 3
           ? _screens[_screenIndex]["screen"]
-          : NewOrderScreen(selectOrderScreen),
+          : NewOrderScreen(selectOrderScreen: selectOrderScreen, order: order ?? null,),
     );
   }
 }

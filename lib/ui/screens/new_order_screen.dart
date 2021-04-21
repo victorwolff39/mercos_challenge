@@ -13,18 +13,40 @@ import '../../utils/constants/app_routes.dart';
 
 class NewOrderScreen extends StatefulWidget {
   final Function selectOrderScreen;
+  final Order order;
 
-  NewOrderScreen(this.selectOrderScreen);
+  NewOrderScreen({
+    @required this.selectOrderScreen,
+    this.order,
+  });
 
   @override
   _NewOrderScreenState createState() => _NewOrderScreenState();
 }
 
 class _NewOrderScreenState extends State<NewOrderScreen> {
+  Order order;
   Client client;
   List<OrderItem> orderItems = [];
-  Order order;
   double orderTotal = 0;
+  bool isUpdate = false;
+
+  /*
+   * Caso seja passado um Order no construtor dq NewOrderScreen, as variáveis da
+   * tela (dentro do state) receberão os valores apropriados e o boolean isUpdate
+   * será setado para true (usado na hora de salvar o produto).
+   */
+  @override
+  void initState() {
+    super.initState();
+    if (widget.order != null) {
+      order = widget.order;
+      client = widget.order.client;
+      orderItems = widget.order.items;
+      orderTotal = widget.order.total;
+      isUpdate = true;
+    }
+  }
 
   void selectClient(Client selectedClient) {
     setState(() {

@@ -6,7 +6,7 @@ import '../../providers/orders_provider.dart';
 import '../widgets/order/order_widget.dart';
 
 class OrdersScreen extends StatefulWidget {
-  final Function(int) selectScreen;
+  final Function(int, Order) selectScreen;
 
   OrdersScreen(this.selectScreen);
 
@@ -61,10 +61,13 @@ class _OrdersScreenState extends State<OrdersScreen> {
     }
 
     void editOrder(Order order) {
+      widget.selectScreen(3, order);
+      /*
       setState(() {
         ordersProvider.editOrder(order);
         Fluttertoast.showToast(msg: "Pedido editado com sucesso.");
       });
+      */
     }
 
     return RefreshIndicator(
@@ -97,7 +100,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                       FittedBox(
                         child: ElevatedButton(
                           onPressed: () async {
-                            widget.selectScreen(3);
+                            widget.selectScreen(3, null);
                           },
                           child: Row(
                             children: [
