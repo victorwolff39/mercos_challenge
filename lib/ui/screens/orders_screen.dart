@@ -33,7 +33,16 @@ class _OrdersScreenState extends State<OrdersScreen> {
    * Função para atualizar a tela de pedidos.
    */
   Future<void> _refreshProducts(BuildContext context) {
-    return Provider.of<OrdersProvider>(context, listen: false).loadOrders();
+    setState(() {
+      _isLoading = true;
+    });
+    return Provider.of<OrdersProvider>(context, listen: false)
+        .loadOrders()
+        .then((value) => {
+              setState(() {
+                _isLoading = false;
+              })
+            });
   }
 
   @override
@@ -42,12 +51,19 @@ class _OrdersScreenState extends State<OrdersScreen> {
     final orders = ordersProvider.items;
 
     /*
-     * deleteOrder está dentro do build para pegar o BuildContext.
+     * deleteOrder e editOrder estão dentro do build para pegar o BuildContext.
      */
     void deleteOrder(Order order) {
       setState(() {
         ordersProvider.deleteOrder(order);
         Fluttertoast.showToast(msg: "Pedido removido.");
+      });
+    }
+
+    void editOrder(Order order) {
+      setState(() {
+        ordersProvider.editOrder(order);
+        Fluttertoast.showToast(msg: "Pedido editado com sucesso.");
       });
     }
 
@@ -62,6 +78,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     children: [
                       OrderWidget(
                         order: orders[index],
+                        editOrder: editOrder,
                         deleteOrder: deleteOrder,
                       ),
                     ],

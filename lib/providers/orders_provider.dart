@@ -93,7 +93,22 @@ class OrdersProvider with ChangeNotifier {
       await delete(
         '$_ordersUrl/${order.id}.json');
       notifyListeners();
-      _items.remove(order);
+      _items.removeWhere((element) => element.id == order.id);
+      return null;
+    } catch (error) {
+      return "Erro desconhecido.";
+    }
+  }
+
+  Future<String> editOrder(Order order) async {
+    /*
+     * Como o id do Firebase não é importante para nenhum procedimento interno da
+     * aplicação, não tem problema deletar o pedido e cadastra-lo novamente com a mesma data.
+     */
+    try {
+      deleteOrder(order);
+      addOrder(order);
+      notifyListeners();
       return null;
     } catch (error) {
       return "Erro desconhecido.";

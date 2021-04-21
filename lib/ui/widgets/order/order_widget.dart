@@ -5,8 +5,13 @@ import '../../../models/order.dart';
 class OrderWidget extends StatefulWidget {
   final Order order;
   final Function(Order order) deleteOrder;
+  final Function(Order order) editOrder;
 
-  OrderWidget({this.order, this.deleteOrder});
+  OrderWidget({
+    @required this.order,
+    @required this.editOrder,
+    @required this.deleteOrder,
+  });
 
   @override
   _OrderWidgetState createState() => _OrderWidgetState();
@@ -118,7 +123,9 @@ class _OrderWidgetState extends State<OrderWidget>
                               Icons.edit,
                               size: 20,
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              widget.editOrder(widget.order);
+                            },
                           ),
                           IconButton(
                             icon: Icon(
