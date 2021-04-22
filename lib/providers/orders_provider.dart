@@ -47,6 +47,10 @@ class OrdersProvider with ChangeNotifier {
       notifyListeners();
     }
     _items.clear();
+    /*
+     * Ordenar a lista por data
+     */
+    loadedItems.sort((a, b) => a.date.compareTo(b.date));
     _items = loadedItems.reversed.toList();
     return Future.value();
   }

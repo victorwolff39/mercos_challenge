@@ -35,7 +35,7 @@ class ProductRowLabelWidget extends StatelessWidget {
           alignment: Alignment.center,
           width: constraints.maxWidth * 0.20,
           child:
-          Text("Unidade de embarque", style: labelTextStyle()),
+          Text("Un. embarque", style: labelTextStyle()),
         ),
         Container(
           alignment: Alignment.centerLeft,

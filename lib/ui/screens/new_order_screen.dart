@@ -121,7 +121,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         client: client,
         items: orderItems,
         total: totalItems(),
-        date: DateTime.now(),
+        date: !isUpdate ? DateTime.now() : widget.currentOrder.date,
       );
       if (isUpdate) {
         order.id = widget.currentOrder.id;
