@@ -124,7 +124,6 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
         date: DateTime.now(),
       );
       if (isUpdate) {
-        print("aaa ${widget.currentOrder.id}");
         order.id = widget.currentOrder.id;
         Provider.of<OrdersProvider>(context, listen: false).editOrder(this.order);
       } else {
