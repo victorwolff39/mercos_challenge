@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mercos_challenge/ui/widgets/order/order_row_label_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../../providers/orders_provider.dart';
@@ -58,11 +59,15 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Icon(icon, size: 32, color: Theme.of(context).accentColor),
+        Icon(icon, size: 32, color: Theme
+            .of(context)
+            .accentColor),
         SizedBox(width: 10),
         Text(
           title,
-          style: TextStyle(color: Theme.of(context).accentColor, fontSize: 20),
+          style: TextStyle(color: Theme
+              .of(context)
+              .accentColor, fontSize: 20),
         )
       ],
     );
@@ -125,9 +130,11 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
       );
       if (isUpdate) {
         order.id = widget.currentOrder.id;
-        Provider.of<OrdersProvider>(context, listen: false).editOrder(this.order);
+        Provider.of<OrdersProvider>(context, listen: false).editOrder(
+            this.order);
       } else {
-        Provider.of<OrdersProvider>(context, listen: false).addOrder(this.order);
+        Provider.of<OrdersProvider>(context, listen: false).addOrder(
+            this.order);
       }
       widget.selectOrderScreen();
     }
@@ -148,9 +155,8 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Padding(
+    return LayoutBuilder(builder: (ctx, constraints) {
+      return Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
@@ -170,23 +176,33 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                   if (orderItems.length <= 0)
                     Text(
                       "Nenhum produto adicionado",
-                      style: TextStyle(color: Theme.of(context).primaryColor),
+                      style: TextStyle(color: Theme
+                          .of(context)
+                          .primaryColor),
                     ),
                   SizedBox(height: 20),
                   FittedBox(
                     child: ElevatedButton(
                       onPressed: () => addProduct(),
                       child: Row(
-                        children: [Icon(Icons.add), Text("Adicionar produto")],
+                        children: [
+                          Icon(Icons.add),
+                          Text("Adicionar produto")
+                        ],
                       ),
                     ),
                   ),
                   SizedBox(height: 20),
+                  OrderRowLabelWidget(constraints),
                   ListView.builder(
                     itemCount: orderItems.length,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) =>
-                        OrderItemWidget(orderItems[index], removeItem),
+                        OrderItemWidget(
+                          orderItem: orderItems[index],
+                          removeProduct: removeItem,
+                          constraints: constraints,
+                        ),
                   )
                 ],
               ),
@@ -197,7 +213,9 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                   Text(
                     "Total: ${formattedTotal(orderTotal)}",
                     style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
                       fontSize: 20,
                     ),
                   ),
@@ -208,7 +226,10 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
                       FittedBox(
                         child: ElevatedButton(
                           child: Row(
-                            children: [Icon(Icons.save), Text("Salvar pedido")],
+                            children: [
+                              Icon(Icons.save),
+                              Text("Salvar pedido")
+                            ],
                           ),
                           onPressed: () => saveOrder(),
                         ),
@@ -220,7 +241,7 @@ class _NewOrderScreenState extends State<NewOrderScreen> {
             ],
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
