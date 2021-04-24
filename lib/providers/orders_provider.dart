@@ -14,7 +14,7 @@ class OrdersProvider with ChangeNotifier {
 
   Future<void> loadOrders() async {
     List<Order> loadedItems = [];
-    final response = await get('$_ordersUrl.json');
+    final response = await get(Uri.parse('$_ordersUrl.json'));
     Map<String, dynamic> data = json.decode(response.body);
 
     if (data != null) {
@@ -57,8 +57,7 @@ class OrdersProvider with ChangeNotifier {
 
   Future<String> addOrder(Order order) async {
     try {
-      await post(
-        '$_ordersUrl.json',
+      await post(Uri.parse('$_ordersUrl.json'),
         body: json.encode({
           'total': order.total,
           'date': order.date.toIso8601String(),
@@ -95,7 +94,7 @@ class OrdersProvider with ChangeNotifier {
   Future<String> deleteOrder(Order order) async {
     try {
       await delete(
-        '$_ordersUrl/${order.id}.json');
+        Uri.parse('$_ordersUrl/${order.id}.json'));
       notifyListeners();
       _items.removeWhere((element) => element.id == order.id);
       return null;

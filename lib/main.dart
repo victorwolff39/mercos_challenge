@@ -11,7 +11,7 @@ import './utils/constants/app_routes.dart';
 import './providers/products_provider.dart';
 import './ui/screens/splash_screen.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
@@ -37,7 +37,8 @@ class MyApp extends StatelessWidget {
             )
           ],
           child: MaterialApp(
-            debugShowCheckedModeBanner: false, // Desativar o banner de Debug
+            debugShowCheckedModeBanner: false,
+            // Desativar o banner de Debug
             title: "Desafio Mercos",
             theme: ThemeData(
               primarySwatch: Colors.purple,
@@ -53,18 +54,11 @@ class MyApp extends StatelessWidget {
                 ? SplashScreen()
                 : StreamBuilder(
               /*
-               * Pega uma instância do usuário no Firebase e monitora caso o estado dela mude.
-               */
+              * Pega uma instância do usuário no Firebase e monitora caso o estado dela mude.
+              */
               stream: FirebaseAuth.instance.authStateChanges(),
               builder: (ctx, userSnapshot) {
-                if (!userSnapshot.hasData) {
-                  /*
-                   * Se não existir nenhum usuário vai para a tela de login
-                   */
-                  return AuthScreen();
-                } else {
-                  return HomeScreen();
-                }
+                return userSnapshot.hasData ? HomeScreen() : AuthScreen();
               },
             ),
             routes: {

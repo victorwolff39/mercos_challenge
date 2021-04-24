@@ -11,7 +11,7 @@ class ClientsProvider with ChangeNotifier {
   List<Client> get items => [..._items];
 
   Future<void> loadClients() async {
-    final response = await http.get('$_clientsUrl.json');
+    final response = await http.get(Uri.parse('$_clientsUrl.json'));
     List<dynamic> data = json.decode(response.body);
     _items.clear();
 

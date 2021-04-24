@@ -11,7 +11,7 @@ class ProductsProvider with ChangeNotifier {
   List<Product> get items => [..._items];
 
   Future<void> loadProducts() async {
-    final response = await get('$_productsUrl.json');
+    final response = await get(Uri.parse('$_productsUrl.json'));
     List<dynamic> data = json.decode(response.body);
     _items.clear();
 
