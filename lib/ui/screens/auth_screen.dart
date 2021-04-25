@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter/material.dart';
 import '../../models/auth_data.dart';
@@ -20,9 +21,9 @@ class _AuthScreenState extends State<AuthScreen> {
     });
 
     if (authData.isLogin) {
-      error = await Authentication().signIn(authData);
+      error = await Authentication(FirebaseAuth.instance).signIn(authData);
     } else {
-      error = await Authentication().signUp(authData);
+      error = await Authentication(FirebaseAuth.instance).signUp(authData);
     }
 
     if(error != null) {

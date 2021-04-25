@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mercos_challenge/models/order.dart';
 import '../../../services/authentication.dart';
@@ -49,7 +50,7 @@ class MainDrawer extends StatelessWidget {
             leading: Icon(Icons.exit_to_app),
             title: Text('Sair'),
             onTap: () {
-              Authentication().signOut();
+              Authentication(FirebaseAuth.instance).signOut();
             },
           ),
         ],

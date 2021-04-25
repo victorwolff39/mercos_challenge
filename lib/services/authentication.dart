@@ -3,7 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../models/auth_data.dart';
 
 class Authentication {
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth;
+
+  Authentication(this._auth);
 
   Future<String> signIn(AuthData authData) async {
     try {
@@ -45,10 +47,7 @@ class Authentication {
         email: authData.email.trim(),
         password: authData.password,
       );
-    } on PlatformException catch (err) {
-      return err.message ?? 'Ocorreu um erro! Verifique suas credenciais!';
-    } on FirebaseAuthException catch (e) {
-      print(e.code);
+    }  on FirebaseAuthException catch (e) {
       switch(e.code) {
         case "email-already-in-use": {
           return "O e-mail já está em uso.";
